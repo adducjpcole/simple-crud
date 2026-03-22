@@ -11,7 +11,6 @@ interface ModalProps {
 export default function Modal({ title, onClose, children }: ModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape key
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -23,24 +22,26 @@ export default function Modal({ title, onClose, children }: ModalProps) {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/30 backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === overlayRef.current) onClose();
       }}
     >
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
+      <div className="bg-white w-full max-w-md mx-4 border border-neutral-200">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-100">
+          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+            {title}
+          </p>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-xl font-bold leading-none"
+            className="text-neutral-300 hover:text-rose-500 transition-colors text-lg leading-none font-light"
           >
             ×
           </button>
         </div>
         {/* Body */}
-        <div className="px-6 py-5">{children}</div>
+        <div className="px-6 py-6">{children}</div>
       </div>
     </div>
   );

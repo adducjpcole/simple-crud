@@ -8,6 +8,9 @@ interface FieldProps {
   step?: string;
 }
 
+const inputClass =
+  "w-full border-b border-neutral-200 bg-transparent px-0 py-2 text-sm text-neutral-800 placeholder:text-neutral-300 focus:outline-none focus:border-rose-400 transition-colors";
+
 export function Field({
   label,
   name,
@@ -18,9 +21,9 @@ export function Field({
   step,
 }: FieldProps) {
   return (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-        {label} {required && <span className="text-red-500">*</span>}
+    <div className="mb-5">
+      <label className="block text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-1">
+        {label} {required && <span className="text-rose-400">*</span>}
       </label>
       <input
         type={type}
@@ -29,7 +32,7 @@ export function Field({
         required={required}
         placeholder={placeholder}
         step={step}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+        className={inputClass}
       />
     </div>
   );
@@ -51,18 +54,18 @@ export function SelectField({
   options,
 }: SelectFieldProps) {
   return (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-        {label} {required && <span className="text-red-500">*</span>}
+    <div className="mb-5">
+      <label className="block text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-1">
+        {label} {required && <span className="text-rose-400">*</span>}
       </label>
       <select
         name={name}
         defaultValue={defaultValue ?? ""}
         required={required}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent bg-white"
+        className="w-full border-b border-neutral-200 bg-transparent px-0 py-2 text-sm text-neutral-800 focus:outline-none focus:border-rose-400 transition-colors appearance-none cursor-pointer"
       >
         <option value="" disabled>
-          — Select —
+          Select…
         </option>
         {options.map((o) => (
           <option key={o.value} value={o.value}>
@@ -86,8 +89,8 @@ export function TextAreaField({
   placeholder?: string;
 }) {
   return (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
+    <div className="mb-5">
+      <label className="block text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-1">
         {label}
       </label>
       <textarea
@@ -95,7 +98,7 @@ export function TextAreaField({
         defaultValue={defaultValue ?? ""}
         placeholder={placeholder}
         rows={3}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent resize-none"
+        className="w-full border-b border-neutral-200 bg-transparent px-0 py-2 text-sm text-neutral-800 placeholder:text-neutral-300 focus:outline-none focus:border-rose-400 transition-colors resize-none"
       />
     </div>
   );
@@ -104,29 +107,23 @@ export function TextAreaField({
 export function FormActions({
   onClose,
   submitLabel,
-  submitColor = "blue",
 }: {
   onClose: () => void;
   submitLabel: string;
   submitColor?: "blue" | "green" | "purple";
 }) {
-  const colors = {
-    blue: "bg-blue-600 hover:bg-blue-700",
-    green: "bg-green-600 hover:bg-green-700",
-    purple: "bg-purple-600 hover:bg-purple-700",
-  };
   return (
-    <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-100">
+    <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-neutral-100">
       <button
         type="button"
         onClick={onClose}
-        className="px-4 py-2 text-sm rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors"
+        className="px-4 py-2 text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-neutral-700 transition-colors"
       >
         Cancel
       </button>
       <button
         type="submit"
-        className={`px-4 py-2 text-sm rounded-lg text-white font-medium transition-colors ${colors[submitColor]}`}
+        className="px-4 py-2 text-xs font-semibold uppercase tracking-widest bg-rose-500 text-white hover:bg-rose-600 active:scale-95 transition-all"
       >
         {submitLabel}
       </button>

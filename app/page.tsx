@@ -4,51 +4,65 @@ export default function Home() {
   const pages = [
     {
       href: "/uom",
+      label: "01",
       title: "Units of Measure",
       description:
-        "Manage measurement units such as mg/dL, mmol/L, g/dL, IU/L, and cells/µL.",
-      color: "bg-blue-600",
-      icon: "📏",
+        "Manage measurement units — mg/dL, mmol/L, g/dL, IU/L, cells/µL.",
     },
     {
       href: "/testcategories",
+      label: "02",
       title: "Test Categories",
       description:
-        "Manage categories for grouping medical tests (e.g. BCT, CBC, LFT).",
-      color: "bg-green-600",
-      icon: "🗂️",
+        "Group medical tests into categories such as BCT, CBC, and LFT.",
     },
     {
       href: "/medicaltests",
+      label: "03",
       title: "Medical Tests",
       description:
-        "Manage individual medical tests with their normal range values and associated units.",
-      color: "bg-purple-600",
-      icon: "🔬",
+        "Individual tests with reference ranges, units, and categories.",
     },
   ];
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-800 mb-2">Dashboard</h1>
-      <p className="text-gray-500 mb-8">
-        Medical Laboratory Systems — Simple CRUD Management
-      </p>
+      {/* Page heading */}
+      <div className="mb-12 border-b border-neutral-200 pb-8">
+        <p className="text-xs font-semibold uppercase tracking-widest text-rose-500 mb-3">
+          Dashboard
+        </p>
+        <h1 className="text-3xl font-semibold text-neutral-800">
+          Medical Laboratory Systems
+        </h1>
+        <p className="text-neutral-400 text-sm mt-2">
+          Manage your lab data across three modules below.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-neutral-200">
         {pages.map((page) => (
-          <Link key={page.href} href={page.href} className="group block">
-            <div className="bg-white rounded-xl shadow hover:shadow-lg transition-shadow border border-gray-100 overflow-hidden">
-              <div className={`${page.color} px-6 py-5 text-white`}>
-                <span className="text-3xl">{page.icon}</span>
-                <h2 className="text-xl font-semibold mt-2">{page.title}</h2>
-              </div>
-              <div className="px-6 py-4">
-                <p className="text-gray-600 text-sm">{page.description}</p>
-                <span className="mt-3 inline-block text-sm font-medium text-blue-600 group-hover:underline">
-                  View &rarr;
-                </span>
-              </div>
+          <Link
+            key={page.href}
+            href={page.href}
+            className="group bg-white p-8 flex flex-col justify-between min-h-48 hover:bg-neutral-50 transition-colors"
+          >
+            <div className="flex justify-between items-start">
+              <span className="font-mono text-xs text-neutral-300">
+                {page.label}
+              </span>
+              <span className="text-neutral-200 group-hover:text-rose-400 transition-colors text-lg">
+                →
+              </span>
+            </div>
+            <div>
+              <h2 className="text-base font-semibold text-neutral-800 mb-2">
+                {page.title}
+              </h2>
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                {page.description}
+              </p>
             </div>
           </Link>
         ))}
